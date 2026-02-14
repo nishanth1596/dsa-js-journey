@@ -43,28 +43,21 @@
 
 // solution
 function removeDuplicates(nums){
-    let newArray = new Array(nums.length).fill(0)
-    
-    let currentNumber=nums[0] 
-    newArray[0]= currentNumber
-    let leftPointerIndex = 1; 
-    let rightPointerIndex = nums.length-1;
-    let k = 1;
+    let currentNumber = nums[0]
+    let leftPointerIndex = 1;
 
-    for (let i=1; i<nums.length; i++){
-        if (nums[i]!== currentNumber){
-            newArray[leftPointerIndex]= nums[i]
-            currentNumber = nums[i+1]
-            leftPointerIndex++
-            k++;
+    for (let i = 1; i<nums.length; i++){
+        if(nums[i] === currentNumber){
+            currentNumber = nums[i]
         } else {
-            newArray[rightPointerIndex]= nums[i]
-            rightPointerIndex--;
+            nums[leftPointerIndex] = nums[i]
+            leftPointerIndex++
+            currentNumber = nums[i]
         }
     }
 
-    return newArray
+    return leftPointerIndex
 }
 
-// console.log('heya', removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
+console.log('heya', removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
 console.log('heya', removeDuplicates([1,1,2]));
