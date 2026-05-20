@@ -35,6 +35,7 @@ const strStr = function (haystack, needle){
             if (needleChar === haystackChar){
                 needlePointer++
             } else {
+                haystackPointer = firstOccurence
                 firstOccurence = undefined
                 needlePointer = 0
             }
