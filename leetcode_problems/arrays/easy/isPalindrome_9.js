@@ -25,21 +25,37 @@
 
 // Follow up: Could you solve it without converting the integer to a string?
 
-const isPalindrome = function(x) {
-    const value = String(x)
-    let left = 0
-    let right  = value.length -1
+// const isPalindrome = function(x) {
+//     const value = String(x)
+//     let left = 0
+//     let right  = value.length -1
 
-    while (left < right){
-        if (value[left] !== value[right]){
-            return false
-        }
-        left++
-        right--
+//     while (left < right){
+//         if (value[left] !== value[right]){
+//             return false
+//         }
+//         left++
+//         right--
+//     }
+
+//     return true
+// };
+
+//  More improved solution
+
+const isPalindrome = function (x){
+    let reverse = 0 
+    let copy = x
+
+    while (copy > 0 ){
+        const digit = copy % 10
+        reverse = reverse * 10 + digit
+
+        copy = Math.floor(copy/10)
     }
 
-    return true
-};
+    return reverse === x
+}
 
 console.log(isPalindrome(121));
 console.log(isPalindrome(-121));
