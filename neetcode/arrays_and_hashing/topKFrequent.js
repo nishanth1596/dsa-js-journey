@@ -20,20 +20,44 @@
 // -1000 <= nums[i] <= 1000
 // 1 <= k <= number of distinct elements in nums.
 
+// const topKFrequent = (num, k) => {
+//     const map = {}
+
+//     for (const number of num) {
+//         map[number] = (map[number] || 0) + 1
+//     }
+
+//     const pairs = Object.entries(map).sort((a,b) => b[1]-a[1])
+
+//     const result = []
+//     for (let i =0; i < k; i++){
+//         result.push(Number(pairs[i][0]))
+//     }
+//     return result
+// }
+
+// more optimised solution
 const topKFrequent = (num, k) => {
     const map = {}
 
     for (const number of num) {
-        map[number] = (map[number] || 0) + 1
+        map[number] = ( map[number] || 0 ) + 1
     }
 
-    const pairs = Object.entries(map).sort((a,b) => b[1]-a[1])
+    const bucket = {}
+
+    for (const [number, frequncy] of Object.entries(map)){
+        bucket[frequncy] = [number]
+    }
+    console.log('heya', bucket);
+
+    console.log('heya', map);
 
     const result = []
-    for (let i =0; i < k; i++){
-        result.push(Number(pairs[i][0]))
+    for (const [number, frequncy] of Object.entries(bucket)){
+        console.log('heya', number,frequncy);
     }
     return result
 }
 
-console.log(topKFrequent(nums = [1, 2, 2, 3, 3, 3], k = 2));
+console.log(topKFrequent(nums = [1, 2, 2, 3, 3,3,3, 3], k = 2));
