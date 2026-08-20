@@ -54,8 +54,6 @@ const encode = (strs) => {
     let codedStrs = ''
 
     for (let i=0; i< strs.length; i++){
-        console.log('heya', strs[i]);
-        console.log('heya', strs[i].length);
         const length = strs[i].length
         codedStrs += length+'#'+strs[i]
     }
@@ -63,22 +61,31 @@ const encode = (strs) => {
     return codedStrs
 }
 
-const decode = (strs) => {
+const decode = (str) => {
     let decodedStrs = []
 
-    for (let i =0; i < strs[0].length;  i++){
-        console.log('heya', strs[0][i]);
-        const number = strs[0][i] < 100 ? strs[0][i] : undefined
-        const codedKey = number !== undefined ? number+strs[0][i+1] : undefined
-        // console.log('heya', number, codedKey, i );
+    for (let i =0; i < str.length;  i++){
+        const hashIndex = str.indexOf("#", i)
+        const number = Number(str.slice(i, hashIndex))
+        const codedKey = number + '#'
 
-        if (strs[0][i]+strs[0][i+1] === codedKey){
-            console.log('heya', strs[0][i]+strs[0][i+1] === codedKey );
+        if (str.slice(i, hashIndex+1) === codedKey){
+            decodedStrs.push(str.slice(hashIndex+1, hashIndex + number+ 1))
+            i = number+ hashIndex
         };
     }
 
     return decodedStrs
 }
 
+// console.log('heya', (strs = ["Hello","World"]));
 // console.log('heya', encode(strs = ["Hello","World"]));
-console.log('heya', decode(["5#Hello5#World"]));
+// console.log('heya', decode("5#Hello5#World"));
+
+// console.log('heya', (strs = ["Hello","World"]));
+// console.log('heya', encode(strs = ["we","say",":","yes","!@#$%^&*()"]));
+// console.log('heya', decode("2#we3#say1#:3#yes10#!@#$%^&*()"));
+
+console.log('heya', encode(strs = ["http://x.y?a=1&b=2","key=value","semi;colon"]));
+console.log('heya', decode("18#http://x.y?a=1&b=29#key=value10#semi;colon"));
+// console.log('heya', decode("18#http://x.y?a=1&b=29#key=value10#semi;colon"));
