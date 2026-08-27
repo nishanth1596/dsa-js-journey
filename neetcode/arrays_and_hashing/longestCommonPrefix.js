@@ -24,30 +24,21 @@
 // strs[i] is made up of lowercase English letters if it is non-empty.
 
 const longestCommonPrefix = (strs) => {
-  const map = {};
-  let sliceAtValue = null;
+    let result = ""
+    const firstWord = strs[0]
+    // console.log('heya', firstWord)
+    let pointer = 1
+    let charPointer = 0
+    while (charPointer < strs[0].length){
 
-  for (let i = 0; i < strs[0].length; i++) {
-    map[i] = strs[0][i];
-  }
-
-  let pointer = 1;
-  while (strs.length > pointer) {
-    for (let i = 0; i < strs[pointer].length; i++) {
-      const letter = strs[pointer][i];
-      if (map[i] === letter) {
-        continue;
-      } else {
-        if (pointer === 1){
-            sliceAtValue = i;
+        while (pointer < strs.length){
+            // console.log('char',strs[charPointer] )
+            pointer++
         }
-        break;
-      }
+        charPointer++
     }
-    pointer++;
-  }
 
-  return strs[0].slice(0, sliceAtValue);
+  return ;
 };
 
 // console.log(longestCommonPrefix(["bat", "bag", "bank", "band"]));
@@ -55,3 +46,4 @@ const longestCommonPrefix = (strs) => {
 // console.log(longestCommonPrefix(["dance", "dag", "danger", "damage"]));
 // console.log(longestCommonPrefix(["flower","flow","flight"]));
 console.log(longestCommonPrefix(strs=["interview","internet","internal","interval"]));
+// console.log(longestCommonPrefix(strs=[]));
